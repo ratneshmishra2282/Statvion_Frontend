@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \":*)",
+      "Bash(python -c \":*)",
+      "Bash(node -e \":*)",
+      "Bash(npx create-next-app@14 . --typescript --tailwind --eslint --app --no-src-dir --import-alias \"@/*\" --use-npm)",
+      "Bash(npm init -y)",
+      "Bash(npm install @reduxjs/toolkit react-redux @tanstack/react-query @tanstack/react-query-devtools axios react-hook-form @hookform/resolvers zod @tanstack/react-table react-hot-toast clsx tailwind-merge lucide-react class-variance-authority)",
+      "Bash(npx shadcn-ui@latest init -y)",
+      "Bash(npx shadcn@latest init -y)",
+      "Bash(npm install tailwindcss-animate)",
+      "Bash(npx shadcn@latest add button card input label select dialog dropdown-menu avatar badge separator sheet table tabs skeleton -y)",
+      "Bash(npm run build)",
+      "Bash(node -e \"const z = require\\(''zod''\\); console.log\\(z.ZodFirstPartyTypeKind ? ''Zod v4+'' : ''older''\\); console.log\\(''version:'', require\\(''zod/package.json''\\).version\\)\")",
+      "Bash(node -e \"const {z} = require\\(''zod''\\); const s = z.enum\\([''a'',''b''], {message: ''required''}\\); console.log\\(''enum ok''\\); const s2 = z.any\\(\\); console.log\\(''any ok''\\); const s3 = z.object\\({x: z.string\\(\\)}\\).merge\\(z.object\\({y: z.string\\(\\)}\\)\\); console.log\\(''merge ok''\\);\")",
+      "Bash(git add app/globals.css app/layout.tsx app/page.tsx package-lock.json package.json tailwind.config.ts .env.example \"app/\\(auth\\)\" \"app/\\(protected\\)\" app/error app/no-permission app/not-found.tsx components.json components features hooks lib middleware.ts services store .claude/launch.json)",
+      "Bash(git commit:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(ls \"C:\\\\Users\\\\dagge\\\\OneDrive\\\\Documents\\\\Statvion_Frontend\\\\node_modules\\\\.bin\\\\next\"*)",
+      "Bash(ls \"C:/Users/dagge/OneDrive/Documents/Statvion_Frontend/node_modules/.bin/\"next*)",
+      "Bash(node -e \"console.log\\(require.resolve\\(''next/dist/bin/next''\\)\\)\")",
+      "Bash(node -e \"const p = require\\(''path''\\); console.log\\(p.join\\(p.dirname\\(require.resolve\\(''next/package.json''\\)\\), ''dist'', ''bin'', ''next''\\)\\)\")",
+      "Bash(git add .claude/launch.json)",
+      "Bash(git add components/guards/AuthGuard.tsx features/auth/auth.api.ts features/dashboard/dashboard.api.ts features/students/student.api.ts .claude/launch.json)"
+    ]
+  }
+}
