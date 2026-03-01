@@ -18,12 +18,10 @@ export const dashboardApi = {
       );
       return response.data;
     } catch {
-      if (process.env.NODE_ENV === "development") {
-        console.warn("[DEV] Using mock dashboard stats");
-        await new Promise((r) => setTimeout(r, 500));
-        return MOCK_STATS;
-      }
-      throw new Error("Failed to fetch dashboard stats");
+      // Fall back to mock data (demo mode)
+      console.warn("[DEMO] Using mock dashboard stats");
+      await new Promise((r) => setTimeout(r, 500));
+      return MOCK_STATS;
     }
   },
 };

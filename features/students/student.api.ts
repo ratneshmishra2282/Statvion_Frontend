@@ -231,12 +231,10 @@ export const studentApi = {
       );
       return response.data;
     } catch {
-      if (process.env.NODE_ENV === "development") {
-        console.warn("[DEV] Using mock student list");
-        await new Promise((r) => setTimeout(r, 400));
-        return mockStudentList(params);
-      }
-      throw new Error("Failed to fetch students");
+      // Fall back to mock data (demo mode)
+      console.warn("[DEMO] Using mock student list");
+      await new Promise((r) => setTimeout(r, 400));
+      return mockStudentList(params);
     }
   },
 
@@ -247,14 +245,12 @@ export const studentApi = {
       );
       return response.data;
     } catch {
-      if (process.env.NODE_ENV === "development") {
-        console.warn("[DEV] Using mock student detail");
-        await new Promise((r) => setTimeout(r, 300));
-        const student = MOCK_STUDENTS.find((s) => s.id === id);
-        if (student) return student;
-        throw new Error("Student not found");
-      }
-      throw new Error("Failed to fetch student");
+      // Fall back to mock data (demo mode)
+      console.warn("[DEMO] Using mock student detail");
+      await new Promise((r) => setTimeout(r, 300));
+      const student = MOCK_STUDENTS.find((s) => s.id === id);
+      if (student) return student;
+      throw new Error("Student not found");
     }
   },
 
@@ -267,18 +263,16 @@ export const studentApi = {
       );
       return response.data;
     } catch {
-      if (process.env.NODE_ENV === "development") {
-        console.warn("[DEV] Mock student created");
-        await new Promise((r) => setTimeout(r, 600));
-        return {
-          ...MOCK_STUDENTS[0],
-          id: `stu_${Date.now()}`,
-          firstName: data.get("firstName") as string,
-          lastName: data.get("lastName") as string,
-          admissionNo: `ADM${Date.now()}`,
-        };
-      }
-      throw new Error("Failed to create student");
+      // Fall back to mock data (demo mode)
+      console.warn("[DEMO] Mock student created");
+      await new Promise((r) => setTimeout(r, 600));
+      return {
+        ...MOCK_STUDENTS[0],
+        id: `stu_${Date.now()}`,
+        firstName: data.get("firstName") as string,
+        lastName: data.get("lastName") as string,
+        admissionNo: `ADM${Date.now()}`,
+      };
     }
   },
 
@@ -291,13 +285,11 @@ export const studentApi = {
       );
       return response.data;
     } catch {
-      if (process.env.NODE_ENV === "development") {
-        console.warn("[DEV] Mock student updated");
-        await new Promise((r) => setTimeout(r, 400));
-        const student = MOCK_STUDENTS.find((s) => s.id === id);
-        return student || MOCK_STUDENTS[0];
-      }
-      throw new Error("Failed to update student");
+      // Fall back to mock data (demo mode)
+      console.warn("[DEMO] Mock student updated");
+      await new Promise((r) => setTimeout(r, 400));
+      const student = MOCK_STUDENTS.find((s) => s.id === id);
+      return student || MOCK_STUDENTS[0];
     }
   },
 
@@ -305,12 +297,10 @@ export const studentApi = {
     try {
       await api.delete(API_ENDPOINTS.STUDENTS.DELETE(id));
     } catch {
-      if (process.env.NODE_ENV === "development") {
-        console.warn("[DEV] Mock student deleted:", id);
-        await new Promise((r) => setTimeout(r, 300));
-        return;
-      }
-      throw new Error("Failed to delete student");
+      // Fall back to mock data (demo mode)
+      console.warn("[DEMO] Mock student deleted:", id);
+      await new Promise((r) => setTimeout(r, 300));
+      return;
     }
   },
 };

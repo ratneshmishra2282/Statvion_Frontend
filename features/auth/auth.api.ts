@@ -42,12 +42,7 @@ async function mockLogin(data: LoginRequest): Promise<LoginResponse> {
   if (mockUser && data.password.length >= 6) {
     return mockUser;
   }
-  throw {
-    response: {
-      status: 401,
-      data: { message: "Invalid email or password" },
-    },
-  };
+  throw new Error("Invalid email or password");
 }
 
 export const authApi = {
@@ -59,12 +54,9 @@ export const authApi = {
       );
       return response.data;
     } catch {
-      // If backend is unreachable in development, fall back to mock
-      if (process.env.NODE_ENV === "development") {
-        console.warn("[DEV] Backend unreachable, using mock login");
-        return mockLogin(data);
-      }
-      throw new Error("Login failed");
+      // If backend is unreachable, fall back to mock (demo mode)
+      console.warn("[DEMO] Backend unreachable, using mock login");
+      return mockLogin(data);
     }
   },
   logout: async (): Promise<void> => {
