@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Student } from "@/features/students/student.types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Eye } from "lucide-react";
+import { Eye, Pencil } from "lucide-react";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -61,11 +61,18 @@ export function getStudentColumns(): ColumnDef<Student>[] {
       id: "actions",
       header: "Actions",
       cell: ({ row }) => (
-        <Link href={`/students/${row.original.id}`}>
-          <Button variant="ghost" size="icon">
-            <Eye className="h-4 w-4" />
-          </Button>
-        </Link>
+        <div className="flex items-center gap-1">
+          <Link href={`/students/${row.original.id}`}>
+            <Button variant="ghost" size="icon">
+              <Eye className="h-4 w-4" />
+            </Button>
+          </Link>
+          <Link href={`/students/edit/${row.original.id}`}>
+            <Button variant="ghost" size="icon">
+              <Pencil className="h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
       ),
     },
   ];

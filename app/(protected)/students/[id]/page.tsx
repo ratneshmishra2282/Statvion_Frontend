@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Pencil } from "lucide-react";
 
 export default function StudentDetailPage() {
   const params = useParams();
@@ -46,12 +46,19 @@ export default function StudentDetailPage() {
           </Button>
         </Link>
         <h1 className="text-2xl md:text-3xl font-bold">Student Details</h1>
-        <Badge
-          variant={student.status === "active" ? "default" : "secondary"}
-          className="ml-auto"
-        >
-          {student.status}
-        </Badge>
+        <div className="ml-auto flex items-center gap-2">
+          <Link href={`/students/edit/${id}`}>
+            <Button variant="outline" size="sm">
+              <Pencil className="mr-2 h-4 w-4" />
+              Edit
+            </Button>
+          </Link>
+          <Badge
+            variant={student.status === "active" ? "default" : "secondary"}
+          >
+            {student.status}
+          </Badge>
+        </div>
       </div>
 
       <div className="grid gap-6">
