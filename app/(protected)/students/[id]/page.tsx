@@ -45,7 +45,7 @@ export default function StudentDetailPage() {
             <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
-        <h1 className="text-3xl font-bold">Student Details</h1>
+        <h1 className="text-2xl md:text-3xl font-bold">Student Details</h1>
         <Badge
           variant={student.status === "active" ? "default" : "secondary"}
           className="ml-auto"
@@ -61,8 +61,8 @@ export default function StudentDetailPage() {
             <CardTitle>Basic Information</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-start gap-6">
-              <Avatar className="h-20 w-20">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+              <Avatar className="h-20 w-20 flex-shrink-0">
                 {student.photoUrl ? (
                   <AvatarImage src={student.photoUrl} />
                 ) : null}
@@ -71,7 +71,7 @@ export default function StudentDetailPage() {
                   {student.lastName.charAt(0)}
                 </AvatarFallback>
               </Avatar>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 flex-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 flex-1 w-full">
                 <InfoField label="Admission No" value={student.admissionNo} />
                 <InfoField
                   label="Full Name"
@@ -95,7 +95,7 @@ export default function StudentDetailPage() {
             <CardTitle>Parent Details</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               <InfoField label="Father's Name" value={student.fatherName} />
               <InfoField label="Father's Mobile" value={student.fatherMobile} />
               <InfoField
@@ -126,7 +126,7 @@ export default function StudentDetailPage() {
             <CardTitle>Address</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               <InfoField
                 label="Residential Address"
                 value={student.residentialAddress}
@@ -150,7 +150,7 @@ export default function StudentDetailPage() {
             <CardTitle>Academic Details</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               <InfoField
                 label="Admission Date"
                 value={student.admissionDate}
@@ -173,7 +173,7 @@ export default function StudentDetailPage() {
               <CardTitle>Documents</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 {student.documents.map((doc) => (
                   <div
                     key={doc.id}

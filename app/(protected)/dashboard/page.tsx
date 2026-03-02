@@ -10,10 +10,10 @@ export default function DashboardPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+      <h1 className="text-2xl md:text-3xl font-bold mb-6">Dashboard</h1>
 
       {isLoading ? (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
           {Array.from({ length: 4 }).map((_, i) => (
             <Skeleton key={i} className="h-[120px] rounded-xl" />
           ))}
@@ -21,7 +21,7 @@ export default function DashboardPage() {
       ) : isError ? (
         <div className="text-destructive">Failed to load dashboard data.</div>
       ) : stats ? (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
           <StatCard
             title="Total Students"
             value={stats.totalStudents}

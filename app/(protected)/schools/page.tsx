@@ -23,7 +23,7 @@ export default function SchoolsPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Schools</h1>
+      <h1 className="text-2xl md:text-3xl font-bold mb-6">Schools</h1>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {/* Placeholder school cards */}
         {[1, 2, 3].map((i) => (

@@ -17,7 +17,7 @@ export default function SchoolBrand() {
           className="rounded-full"
         />
       )}
-      <span className="font-semibold text-lg">
+      <span className="font-semibold text-lg hidden sm:inline">
         {user?.schoolName || "Statvion ERP"}
       </span>
     </div>

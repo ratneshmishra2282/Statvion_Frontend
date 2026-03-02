@@ -47,16 +47,16 @@ export default function StudentsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">Students</h1>
-        <Button onClick={() => router.push("/students/add")}>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <h1 className="text-2xl md:text-3xl font-bold">Students</h1>
+        <Button onClick={() => router.push("/students/add")} className="w-full sm:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Add Student
         </Button>
       </div>
 
-      <div className="flex items-center gap-4 mb-4">
-        <div className="relative flex-1 max-w-sm">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-4">
+        <div className="relative flex-1 max-w-full sm:max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search students..."
@@ -75,7 +75,7 @@ export default function StudentsPage() {
             setPagination((prev) => ({ ...prev, pageIndex: 0 }));
           }}
         >
-          <SelectTrigger className="w-[150px]">
+          <SelectTrigger className="w-full sm:w-[150px]">
             <SelectValue placeholder="All Classes" />
           </SelectTrigger>
           <SelectContent>

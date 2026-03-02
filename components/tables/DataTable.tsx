@@ -59,8 +59,8 @@ export default function DataTable<TData>({
 
   return (
     <div>
-      <div className="rounded-md border">
-        <Table>
+      <div className="rounded-md border overflow-x-auto">
+        <Table className="min-w-[600px]">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -114,7 +114,7 @@ export default function DataTable<TData>({
         </Table>
       </div>
 
-      <div className="flex items-center justify-between py-4">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4">
         <div className="flex items-center gap-2">
           <span className="text-sm text-muted-foreground">Rows per page</span>
           <Select
@@ -137,7 +137,7 @@ export default function DataTable<TData>({
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground">
+          <span className="text-sm text-muted-foreground whitespace-nowrap">
             Page {pagination.pageIndex + 1} of {pageCount || 1}
           </span>
           <Button

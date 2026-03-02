@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
-import { setAcademicYear } from "@/features/ui/ui.slice";
+import { setAcademicYear, setMobileSidebarOpen } from "@/features/ui/ui.slice";
 import { logout } from "@/features/auth/auth.slice";
 import { ACADEMIC_YEARS } from "@/lib/constants";
 import { useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { LogOut, User } from "lucide-react";
+import { LogOut, Menu, User } from "lucide-react";
 
 export default function Header() {
   const dispatch = useAppDispatch();
@@ -38,15 +38,23 @@ export default function Header() {
   };
 
   return (
-    <header className="h-16 border-b bg-card flex items-center justify-between px-6">
-      <SchoolBrand />
+    <header className="h-16 border-b bg-card flex items-center justify-between px-4 md:px-6">
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => dispatch(setMobileSidebarOpen(true))}
+          className="md:hidden p-2 rounded-md hover:bg-accent"
+        >
+          <Menu className="h-5 w-5" />
+        </button>
+        <SchoolBrand />
+      </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4">
         <Select
           value={academicYear}
           onValueChange={(v) => dispatch(setAcademicYear(v))}
         >
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-[120px] md:w-[140px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

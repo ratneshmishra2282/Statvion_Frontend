@@ -148,11 +148,11 @@ export default function AddStudentPage() {
             <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
-        <h1 className="text-3xl font-bold">Add Student</h1>
+        <h1 className="text-2xl md:text-3xl font-bold">Add Student</h1>
       </div>
 
       <Card>
-        <CardContent className="pt-6">
+        <CardContent className="p-4 md:p-6 pt-4 md:pt-6">
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <MultiStepForm steps={STEP_LABELS} currentStep={currentStep}>
