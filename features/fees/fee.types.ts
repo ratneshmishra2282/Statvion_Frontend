@@ -35,3 +35,9 @@ export interface FeeReceipt {
   paymentMode: string;
   transactionId: string;
 }
+
+export interface ReceiptListParams {
+  page: number;
+  limit: number;
+  search?: string;
+}
