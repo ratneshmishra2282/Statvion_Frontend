@@ -42,19 +42,36 @@ export const PAGINATION = {
   PAGE_SIZE_OPTIONS: [10, 20, 50, 100],
 } as const;
 
-export const SUPER_ADMIN_MENU = [
+export type MenuItem = {
+  label: string;
+  href: string;
+  icon: string;
+  children?: { label: string; href: string; icon: string }[];
+};
+
+export const SUPER_ADMIN_MENU: MenuItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: "LayoutDashboard" },
   { label: "Schools", href: "/schools", icon: "School" },
   { label: "Reports", href: "/reports", icon: "BarChart3" },
-] as const;
+];
 
-export const ADMIN_MENU = [
+export const ADMIN_MENU: MenuItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: "LayoutDashboard" },
   { label: "Students", href: "/students", icon: "GraduationCap" },
-  { label: "Fee", href: "/fee", icon: "IndianRupee" },
-  { label: "SMS", href: "/sms", icon: "MessageSquare" },
-  { label: "Master", href: "/master", icon: "Settings" },
-] as const;
+  { label: "Attendance", href: "/attendance", icon: "CalendarCheck" },
+  { label: "Fees", href: "/fees", icon: "IndianRupee" },
+  { label: "Exams", href: "/exams", icon: "FileText" },
+  {
+    label: "Communication",
+    href: "/communication",
+    icon: "MessageSquare",
+    children: [
+      { label: "WhatsApp", href: "/communication/whatsapp", icon: "MessageCircle" },
+      { label: "SMS", href: "/communication/sms", icon: "Smartphone" },
+      { label: "Email", href: "/communication/email", icon: "Mail" },
+    ],
+  },
+];
 
 export const ACADEMIC_YEARS = [
   "2024-2025",
