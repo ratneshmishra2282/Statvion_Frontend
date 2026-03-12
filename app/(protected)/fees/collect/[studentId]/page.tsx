@@ -434,6 +434,9 @@ function CollectFeeDialog({
 
     const payload: CollectFeePayload = {
       studentId,
+      studentName,
+      admissionNo,
+      studentClass,
       installment,
       feeType,
       amountDue,

@@ -1,5 +1,8 @@
 export interface CollectFeePayload {
   studentId: string;
+  studentName: string;
+  admissionNo: string;
+  studentClass: string;
   installment: string;
   feeType: string;
   amountDue: number;
