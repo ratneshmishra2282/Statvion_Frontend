@@ -15,6 +15,7 @@ import BasicInfoStep from "@/components/forms/student-steps/BasicInfoStep";
 import ParentDetailsStep from "@/components/forms/student-steps/ParentDetailsStep";
 import AddressStep from "@/components/forms/student-steps/AddressStep";
 import AcademicStep from "@/components/forms/student-steps/AcademicStep";
+import FeeDetailsStep from "@/components/forms/student-steps/FeeDetailsStep";
 import DocumentsStep from "@/components/forms/student-steps/DocumentsStep";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -57,7 +58,17 @@ const STEP_FIELDS: Record<number, string[]> = {
     "stream",
     "previousSchool",
   ],
-  4: ["photo", "documents"],
+  4: [
+    "facilities",
+    "routeHostel",
+    "vehicle",
+    "accountType",
+    "schemes",
+    "smsCategory",
+    "feesMonth",
+    "transportMonth",
+  ],
+  5: ["photo", "documents"],
 };
 
 export default function AddStudentPage() {
@@ -96,6 +107,20 @@ export default function AddStudentPage() {
       section: "",
       stream: "",
       previousSchool: "",
+      facilities: "No",
+      routeHostel: "No",
+      vehicle: "",
+      accountType: "Single",
+      schemes: "Regular-01-1",
+      smsCategory: "",
+      feesMonth: [
+        "April", "May", "June", "July", "August", "September",
+        "October", "November", "December", "January", "February", "March",
+      ],
+      transportMonth: [
+        "April", "May", "June", "July", "August", "September",
+        "October", "November", "December", "January", "February", "March",
+      ],
       photo: undefined,
       documents: [],
     },
@@ -122,6 +147,11 @@ export default function AddStudentPage() {
         formData.append("photo", value);
       } else if (key === "documents" && Array.isArray(value)) {
         value.forEach((file: File) => formData.append("documents", file));
+      } else if (
+        (key === "feesMonth" || key === "transportMonth") &&
+        Array.isArray(value)
+      ) {
+        formData.append(key, JSON.stringify(value));
       } else if (value !== undefined && value !== null && value !== "") {
         formData.append(key, String(value));
       }
@@ -137,6 +167,7 @@ export default function AddStudentPage() {
     <ParentDetailsStep key="parent" />,
     <AddressStep key="address" />,
     <AcademicStep key="academic" />,
+    <FeeDetailsStep key="feeDetails" />,
     <DocumentsStep key="documents" />,
   ];
 

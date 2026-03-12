@@ -31,6 +31,17 @@ export interface Student {
   section: string;
   stream: string;
   previousSchool: string;
+  // Fee Details
+  facilities: string;
+  routeHostel: string;
+  vehicle: string;
+  accountType: string;
+  schemes: string;
+  smsCategory: string;
+  feesMonth: string[];
+  transportMonth: string[];
+  // Fees
+  fees?: StudentFees;
   // Documents
   documents: StudentDocument[];
   // Status
@@ -45,6 +56,19 @@ export interface StudentDocument {
   name: string;
   type: "birth_certificate" | "aadhaar" | "tc" | "marksheet" | "caste_certificate" | "other";
   url: string;
+}
+
+export interface FeeInstallment {
+  month: string;
+  amount: number;
+  paid: number;
+  due: number;
+  status: "Paid" | "Partial" | "Pending";
+}
+
+export interface StudentFees {
+  tuitionFee: FeeInstallment[];
+  transportFee?: FeeInstallment[];
 }
 
 export interface StudentListParams {

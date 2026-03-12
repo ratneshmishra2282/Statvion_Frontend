@@ -57,7 +57,19 @@ export const academicSchema = z.object({
   previousSchool: z.string().optional(),
 });
 
-// Step 5: Documents
+// Step 5: Fee Details
+export const feeDetailsSchema = z.object({
+  facilities: z.string().optional(),
+  routeHostel: z.string().optional(),
+  vehicle: z.string().optional(),
+  accountType: z.string().optional(),
+  schemes: z.string().optional(),
+  smsCategory: z.string().optional(),
+  feesMonth: z.array(z.string()).optional(),
+  transportMonth: z.array(z.string()).optional(),
+});
+
+// Step 6: Documents
 export const documentsSchema = z.object({
   photo: z.any().optional(),
   documents: z.array(z.any()).optional(),
@@ -68,12 +80,14 @@ export const studentSchema = basicInfoSchema
   .merge(parentDetailsSchema)
   .merge(addressSchema)
   .merge(academicSchema)
+  .merge(feeDetailsSchema)
   .merge(documentsSchema);
 
 export type BasicInfoFormData = z.infer<typeof basicInfoSchema>;
 export type ParentDetailsFormData = z.infer<typeof parentDetailsSchema>;
 export type AddressFormData = z.infer<typeof addressSchema>;
 export type AcademicFormData = z.infer<typeof academicSchema>;
+export type FeeDetailsFormData = z.infer<typeof feeDetailsSchema>;
 export type DocumentsFormData = z.infer<typeof documentsSchema>;
 export type StudentFormData = z.infer<typeof studentSchema>;
 
@@ -82,6 +96,7 @@ export const STEP_SCHEMAS = [
   parentDetailsSchema,
   addressSchema,
   academicSchema,
+  feeDetailsSchema,
   documentsSchema,
 ] as const;
 
@@ -90,5 +105,6 @@ export const STEP_LABELS = [
   "Parent Details",
   "Address",
   "Academic",
+  "Fee Details",
   "Documents",
 ] as const;

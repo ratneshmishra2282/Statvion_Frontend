@@ -19,6 +19,7 @@ import BasicInfoStep from "@/components/forms/student-steps/BasicInfoStep";
 import ParentDetailsStep from "@/components/forms/student-steps/ParentDetailsStep";
 import AddressStep from "@/components/forms/student-steps/AddressStep";
 import AcademicStep from "@/components/forms/student-steps/AcademicStep";
+import FeeDetailsStep from "@/components/forms/student-steps/FeeDetailsStep";
 import DocumentsStep from "@/components/forms/student-steps/DocumentsStep";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -62,7 +63,17 @@ const STEP_FIELDS: Record<number, string[]> = {
     "stream",
     "previousSchool",
   ],
-  4: ["photo", "documents"],
+  4: [
+    "facilities",
+    "routeHostel",
+    "vehicle",
+    "accountType",
+    "schemes",
+    "smsCategory",
+    "feesMonth",
+    "transportMonth",
+  ],
+  5: ["photo", "documents"],
 };
 
 function EditStudentForm({ student }: { student: Student }) {
@@ -101,6 +112,20 @@ function EditStudentForm({ student }: { student: Student }) {
       section: student.section || "",
       stream: student.stream || "",
       previousSchool: student.previousSchool || "",
+      facilities: student.facilities || "No",
+      routeHostel: student.routeHostel || "No",
+      vehicle: student.vehicle || "",
+      accountType: student.accountType || "Single",
+      schemes: student.schemes || "Regular-01-1",
+      smsCategory: student.smsCategory || "",
+      feesMonth: student.feesMonth || [
+        "April", "May", "June", "July", "August", "September",
+        "October", "November", "December", "January", "February", "March",
+      ],
+      transportMonth: student.transportMonth || [
+        "April", "May", "June", "July", "August", "September",
+        "October", "November", "December", "January", "February", "March",
+      ],
       photo: undefined,
       documents: [],
     },
@@ -129,6 +154,11 @@ function EditStudentForm({ student }: { student: Student }) {
         formData.append("photo", value);
       } else if (key === "documents" && Array.isArray(value)) {
         value.forEach((file: File) => formData.append("documents", file));
+      } else if (
+        (key === "feesMonth" || key === "transportMonth") &&
+        Array.isArray(value)
+      ) {
+        formData.append(key, JSON.stringify(value));
       } else if (value !== undefined && value !== null && value !== "") {
         formData.append(key, String(value));
       }
@@ -147,6 +177,7 @@ function EditStudentForm({ student }: { student: Student }) {
     <ParentDetailsStep key="parent" />,
     <AddressStep key="address" />,
     <AcademicStep key="academic" />,
+    <FeeDetailsStep key="feeDetails" />,
     <DocumentsStep key="documents" />,
   ];
 
