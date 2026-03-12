@@ -2,7 +2,6 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Student } from "@/features/students/student.types";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil } from "lucide-react";
 import Link from "next/link";
@@ -45,17 +44,6 @@ export function getStudentColumns(): ColumnDef<Student>[] {
     {
       accessorKey: "fatherMobile",
       header: "Mobile",
-    },
-    {
-      accessorKey: "status",
-      header: "Status",
-      cell: ({ row }) => (
-        <Badge
-          variant={row.original.status === "active" ? "default" : "secondary"}
-        >
-          {row.original.status}
-        </Badge>
-      ),
     },
     {
       id: "actions",

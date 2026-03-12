@@ -63,11 +63,6 @@ export default function StudentDetailPage() {
               Edit
             </Button>
           </Link>
-          <Badge
-            variant={student.status === "active" ? "default" : "secondary"}
-          >
-            {student.status}
-          </Badge>
         </div>
       </div>
 
