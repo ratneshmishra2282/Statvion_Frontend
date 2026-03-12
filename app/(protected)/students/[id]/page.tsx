@@ -230,13 +230,13 @@ function FeesTab({ student }: { student: Student }) {
     });
 
   return (
-    <div className="grid gap-6 mt-4">
+    <div className="grid grid-cols-1 gap-6 mt-4">
       {/* Fee Summary */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
         <Card>
           <CardContent className="p-4 text-center">
             <p className="text-xs text-muted-foreground">Total Fees</p>
-            <p className="text-2xl font-bold">
+            <p className="text-lg sm:text-2xl font-bold">
               {formatCurrency(tuitionTotal + transportTotal)}
             </p>
           </CardContent>
@@ -244,7 +244,7 @@ function FeesTab({ student }: { student: Student }) {
         <Card>
           <CardContent className="p-4 text-center">
             <p className="text-xs text-muted-foreground">Total Paid</p>
-            <p className="text-2xl font-bold text-green-600">
+            <p className="text-lg sm:text-2xl font-bold text-green-600">
               {formatCurrency(tuitionPaid + transportPaid)}
             </p>
           </CardContent>
@@ -252,7 +252,7 @@ function FeesTab({ student }: { student: Student }) {
         <Card>
           <CardContent className="p-4 text-center">
             <p className="text-xs text-muted-foreground">Total Due</p>
-            <p className="text-2xl font-bold text-red-600">
+            <p className="text-lg sm:text-2xl font-bold text-red-600">
               {formatCurrency(tuitionDue + transportDue)}
             </p>
           </CardContent>
@@ -265,7 +265,7 @@ function FeesTab({ student }: { student: Student }) {
           <CardTitle>Fee Configuration</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             <InfoField label="Account Type" value={student.accountType} />
             <InfoField label="Schemes" value={student.schemes} />
             <InfoField label="Facilities" value={student.facilities} />
@@ -277,17 +277,18 @@ function FeesTab({ student }: { student: Student }) {
       </Card>
 
       {/* Tuition Fee Table */}
-      <Card>
+      <Card className="min-w-0 overflow-hidden">
         <CardHeader>
           <CardTitle>Tuition Fee</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="px-0 sm:px-6">
           {tuitionFee.length > 0 ? (
             <FeeTable
               installments={tuitionFee}
               totalAmount={tuitionTotal}
               totalPaid={tuitionPaid}
               totalDue={tuitionDue}
+              scrollable
             />
           ) : (
             <p className="text-sm text-muted-foreground">
@@ -322,73 +323,79 @@ function FeeTable({
   totalAmount,
   totalPaid,
   totalDue,
+  scrollable = false,
 }: {
   installments: FeeInstallment[];
   totalAmount: number;
   totalPaid: number;
   totalDue: number;
+  scrollable?: boolean;
 }) {
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Installment</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-          <TableHead className="text-right">Paid</TableHead>
-          <TableHead className="text-right">Due</TableHead>
-          <TableHead className="text-center">Status</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {installments.map((fee) => (
-          <TableRow key={fee.month}>
-            <TableCell className="font-medium">{fee.month}</TableCell>
-            <TableCell className="text-right">
-              {fee.amount.toLocaleString("en-IN")}
-            </TableCell>
-            <TableCell className="text-right">
-              {fee.paid.toLocaleString("en-IN")}
-            </TableCell>
-            <TableCell className="text-right">
-              {fee.due.toLocaleString("en-IN")}
-            </TableCell>
-            <TableCell className="text-center">
-              <Badge
-                variant={
-                  fee.status === "Paid"
-                    ? "default"
-                    : fee.status === "Partial"
-                      ? "outline"
-                      : "secondary"
-                }
-                className={
-                  fee.status === "Paid"
-                    ? "bg-green-100 text-green-800 hover:bg-green-100"
-                    : fee.status === "Partial"
-                      ? "border-yellow-500 text-yellow-700"
-                      : "bg-red-100 text-red-800 hover:bg-red-100"
-                }
-              >
-                {fee.status}
-              </Badge>
-            </TableCell>
-          </TableRow>
-        ))}
-        <TableRow className="font-bold bg-muted/50">
-          <TableCell>Total</TableCell>
-          <TableCell className="text-right">
-            {totalAmount.toLocaleString("en-IN")}
-          </TableCell>
-          <TableCell className="text-right">
-            {totalPaid.toLocaleString("en-IN")}
-          </TableCell>
-          <TableCell className="text-right">
-            {totalDue.toLocaleString("en-IN")}
-          </TableCell>
-          <TableCell />
-        </TableRow>
-      </TableBody>
-    </Table>
+    <div className={scrollable ? "overflow-x-auto" : ""}>
+      <div className={scrollable ? "min-w-[480px]" : ""}>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Installment</TableHead>
+              <TableHead className="text-right">Amount</TableHead>
+              <TableHead className="text-right">Paid</TableHead>
+              <TableHead className="text-right">Due</TableHead>
+              <TableHead className="text-center">Status</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {installments.map((fee) => (
+              <TableRow key={fee.month}>
+                <TableCell className="font-medium">{fee.month}</TableCell>
+                <TableCell className="text-right">
+                  {fee.amount.toLocaleString("en-IN")}
+                </TableCell>
+                <TableCell className="text-right">
+                  {fee.paid.toLocaleString("en-IN")}
+                </TableCell>
+                <TableCell className="text-right">
+                  {fee.due.toLocaleString("en-IN")}
+                </TableCell>
+                <TableCell className="text-center">
+                  <Badge
+                    variant={
+                      fee.status === "Paid"
+                        ? "default"
+                        : fee.status === "Partial"
+                          ? "outline"
+                          : "secondary"
+                    }
+                    className={
+                      fee.status === "Paid"
+                        ? "bg-green-100 text-green-800 hover:bg-green-100"
+                        : fee.status === "Partial"
+                          ? "border-yellow-500 text-yellow-700"
+                          : "bg-red-100 text-red-800 hover:bg-red-100"
+                    }
+                  >
+                    {fee.status}
+                  </Badge>
+                </TableCell>
+              </TableRow>
+            ))}
+            <TableRow className="font-bold bg-muted/50">
+              <TableCell>Total</TableCell>
+              <TableCell className="text-right">
+                {totalAmount.toLocaleString("en-IN")}
+              </TableCell>
+              <TableCell className="text-right">
+                {totalPaid.toLocaleString("en-IN")}
+              </TableCell>
+              <TableCell className="text-right">
+                {totalDue.toLocaleString("en-IN")}
+              </TableCell>
+              <TableCell />
+            </TableRow>
+          </TableBody>
+        </Table>
+      </div>
+    </div>
   );
 }
 
