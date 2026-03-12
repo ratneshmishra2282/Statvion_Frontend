@@ -7,7 +7,21 @@ import {
   StudentFees,
 } from "./student.types";
 
+const MOCK_FEE_STRUCTURE_WITH_TRANSPORT = [
+  { feeType: "Admission Fee", amount: 2000 },
+  { feeType: "Tuition Fee", amount: 60000 },
+  { feeType: "Transport Fee", amount: 24000 },
+  { feeType: "Annual Charges", amount: 1000 },
+];
+
+const MOCK_FEE_STRUCTURE_WITHOUT_TRANSPORT = [
+  { feeType: "Admission Fee", amount: 2000 },
+  { feeType: "Tuition Fee", amount: 60000 },
+  { feeType: "Annual Charges", amount: 1000 },
+];
+
 const MOCK_FEES: StudentFees = {
+  feeStructure: MOCK_FEE_STRUCTURE_WITH_TRANSPORT,
   tuitionFee: [
     { month: "April", amount: 5000, paid: 5000, due: 0, status: "Paid" },
     { month: "May", amount: 5000, paid: 5000, due: 0, status: "Paid" },
@@ -122,7 +136,7 @@ const MOCK_STUDENTS: Student[] = [
     smsCategory: "GEN",
     feesMonth: ["April","May","June","July","August","September","October","November","December","January","February","March"],
     transportMonth: [],
-    fees: { tuitionFee: MOCK_FEES.tuitionFee },
+    fees: { tuitionFee: MOCK_FEES.tuitionFee, feeStructure: MOCK_FEE_STRUCTURE_WITHOUT_TRANSPORT },
     documents: [],
     status: "active",
     createdAt: "2025-04-01T00:00:00Z",
@@ -166,7 +180,7 @@ const MOCK_STUDENTS: Student[] = [
     smsCategory: "GEN",
     feesMonth: ["April","May","June","July","August","September","October","November","December","January","February","March"],
     transportMonth: [],
-    fees: { tuitionFee: MOCK_FEES.tuitionFee },
+    fees: { tuitionFee: MOCK_FEES.tuitionFee, feeStructure: MOCK_FEE_STRUCTURE_WITHOUT_TRANSPORT },
     documents: [],
     status: "active",
     createdAt: "2025-04-15T00:00:00Z",
@@ -254,7 +268,7 @@ const MOCK_STUDENTS: Student[] = [
     smsCategory: "GEN",
     feesMonth: ["April","May","June","July","August","September","October","November","December","January","February","March"],
     transportMonth: [],
-    fees: { tuitionFee: MOCK_FEES.tuitionFee },
+    fees: { tuitionFee: MOCK_FEES.tuitionFee, feeStructure: MOCK_FEE_STRUCTURE_WITHOUT_TRANSPORT },
     documents: [],
     status: "inactive",
     createdAt: "2025-04-10T00:00:00Z",

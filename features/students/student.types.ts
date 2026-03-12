@@ -66,9 +66,15 @@ export interface FeeInstallment {
   status: "Paid" | "Partial" | "Pending";
 }
 
+export interface FeeStructureItem {
+  feeType: string;
+  amount: number;
+}
+
 export interface StudentFees {
   tuitionFee: FeeInstallment[];
   transportFee?: FeeInstallment[];
+  feeStructure?: FeeStructureItem[];
 }
 
 export interface StudentListParams {

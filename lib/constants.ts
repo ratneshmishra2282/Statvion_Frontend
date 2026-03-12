@@ -11,6 +11,9 @@ export const ROUTES = {
   SCHOOLS: "/schools",
   STUDENTS: "/students",
   ADD_STUDENT: "/students/add",
+  FEES: "/fees",
+  COLLECT_FEE: "/fees/collect",
+  PAYMENT_HISTORY: "/fees/history",
 } as const;
 
 export const API_ENDPOINTS = {
@@ -59,7 +62,15 @@ export const ADMIN_MENU: MenuItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: "LayoutDashboard" },
   { label: "Students", href: "/students", icon: "GraduationCap" },
   { label: "Attendance", href: "/attendance", icon: "CalendarCheck" },
-  { label: "Fees", href: "/fees", icon: "IndianRupee" },
+  {
+    label: "Fees",
+    href: "/fees",
+    icon: "IndianRupee",
+    children: [
+      { label: "Collect Fee", href: "/fees/collect", icon: "Receipt" },
+      { label: "Payment History", href: "/fees/history", icon: "History" },
+    ],
+  },
   { label: "Exams", href: "/exams", icon: "FileText" },
   {
     label: "Communication",

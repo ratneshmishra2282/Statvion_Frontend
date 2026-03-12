@@ -33,6 +33,8 @@ import {
   Smartphone,
   Mail,
   ChevronDown,
+  Receipt,
+  History,
 } from "lucide-react";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -48,6 +50,8 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   MessageCircle,
   Smartphone,
   Mail,
+  Receipt,
+  History,
 };
 
 function DesktopSidebar() {
